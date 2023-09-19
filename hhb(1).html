@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hornets Home Base</title>
+  <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+ body {
+      margin: 0;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+
+    #sidebar {
+      height: 100vh;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #333;
+      padding-top: 20px;
+      color: white;
+    }
+
+    #content {
+      width: calc(100% - 250px);
+      padding: 20px;
+      margin-left: 250px;
+      transition: margin-left 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden; /* Hide any overflowing content */
+    }
+
+    #tableauViz {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      background-color: black;
+      color: white;
+      padding: 10px;
+    }
+
+
+    .menu-item {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid #444;
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+    .dropdown {
+      display: none;
+      background-color: #444;
+      padding: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dropdown.open {
+      display: block;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      background-color: black;
+      color: white;
+      padding: 10px;
+    }
+    #topbar {
+      background-color: black; /* Black background */
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      position: relative; /* Add positioning */
+      z-index: 2; /* Ensure top bar stays on top */
+    }
+    #sidebar {
+      transition: width 0.3s ease;
+      /* ... Other sidebar styles ... */
+    }
+
+    #content {
+      transition: margin-left 0.3s ease;
+      /* ... Other content styles ... */
+    }
+
+    #sidebar.collapsed {
+      width: 60px;
+    }
+
+    #content.collapsed {
+      margin-left: 70px; /* Adjust as needed */
+    }
+
+    #sidebar.collapsed .menu-item {
+      padding: 10px;
+      text-align: center;
+    }
+
+    #sidebar.collapsed .carrot {
+      display: none;
+    }
+
+    #collapse-icon {
+      position: fixed;
+      bottom: 20px;
+      left: 10px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>  <div id="topbar">
+  <h2>Hornets Home Base</h2>
+</div>
+    <div id="sidebar">
+        <h2>  HSE</h2>
+        <div class="menu-item" onclick="loadDashboard('<script type='module' src='https://hornetsbi.koresoftware.com/javascripts/api/tableau.embedding.3.latest.min.js'></script><tableau-viz id='tableau-viz' src='https://hornetsbi.koresoftware.com/t/CHH/views/HornetsHomeBase/HornetsHomeBase' width='1600' height='927')">
+          F&B <span class="carrot">▼</span>
+          <div class="dropdown">
+            <div class="dropdown-option">
+              Mobile Ordering <span class="carrot">▼</span>
+              <div class="dropdown">
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/MobileOrderTransactions/SeasonSummary/e4fb4886-41d2-4027-bd69-4f56a5b669a0/676c41c1-08cb-4fda-bcf5-fbe9f476d504', '1600', '950')">Season Summary</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/MobileOrderTransactions/GamebyGameSummary/83bdf077-6191-4915-b34e-68971c8b3b70/686ede77-785f-49fa-8194-408287b12522', '1600', '950')">Game Summary</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/#/site/CHH/views/MobileOrderTransactions/Season-RawData?:iid=3', '1600', '950')">All Time Season Data</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/#/site/CHH/views/MobileOrderTransactions/OneGame-RawData?:iid=3', '1600', '950')">One Game Raw Data</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/#/site/CHH/views/MobileOrderTransactions/OneCustomer?:iid=3', '1600', '950')">One Customer View</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/#/site/CHH/views/MobileOrderTransactions/GoalTracking?:iid=3', '1600', '950')">Goal Tracking by Drop Count</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/#/site/CHH/views/MobileOrderTransactions/Pacing?:iid=3', '1600', '950')">Pacing</div>
+                <!-- Add more sub-options as needed -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/MobileOrderTransactions/SeasonSummary/e4fb4886-41d2-4027-bd69-4f56a5b669a0/676c41c1-08cb-4fda-bcf5-fbe9f476d504', '1600', '950')">
+          Ticketing <span class="carrot">▼</span>
+          <div class="dropdown">
+            <div class="dropdown-option">
+              Key Reports <span class="carrot">▼</span>
+              <div class="dropdown">
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/HouseDashboard/HouseDashboard', '1200', '2600')">House Dashboard</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/RevenuePacing_0/YearOverYear', '1600', '950')">Revenue Pacing</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/GameSummary23-24/GameSummaryDashboardNew', '1600', '1700')">Game Summary</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/RevenuePacing_0/IndividualGames', '1600', '950')">Individual Games</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/RevenuePacing/BigNumber', '1000', '1800')">Big Number Projections</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/AttendanceProjections22-23/AttendanceProjections', '1600', '950')">Game Revenue Projections</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/AttendanceProjections22-23/AttendanceProjections', '1600', '950')">Attendance Projections</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/MySTMDashboard21-22/HiveSocietyDashboard, '1600', '827')">Hive Society Key Stats</div>
+                <!-- Add more sub-options as needed -->
+                </div>
+
+            <div class="dropdown-option">
+              Pacing and Big Number <span class="carrot">▼</span>
+              <div class="dropdown">
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/MobileOrderTransactions/SeasonSummary/e4fb4886-41d2-4027-bd69-4f56a5b669a0/676c41c1-08cb-4fda-bcf5-fbe9f476d504', '1600', '950')">CRM Revenue Pacing</div>
+              </div>
+            </div>
+
+            <div class="dropdown-option">
+              Attendance <span class="carrot">▼</span>
+              <div class="dropdown">
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/MobileOrderTransactions/SeasonSummary/e4fb4886-41d2-4027-bd69-4f56a5b669a0/676c41c1-08cb-4fda-bcf5-fbe9f476d504', '1600', '950')">In Game Attendee Scans</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/MobileOrderTransactions/SeasonSummary/e4fb4886-41d2-4027-bd69-4f56a5b669a0/676c41c1-08cb-4fda-bcf5-fbe9f476d504', '1600', '950')">Show Rates </div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/MobileOrderTransactions/SeasonSummary/e4fb4886-41d2-4027-bd69-4f56a5b669a0/676c41c1-08cb-4fda-bcf5-fbe9f476d504', '1600', '950')">YOY Attendance</div>
+                <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/MobileOrderTransactions/SeasonSummary/e4fb4886-41d2-4027-bd69-4f56a5b669a0/676c41c1-08cb-4fda-bcf5-fbe9f476d504', '1600', '950')">Comp Tickets</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        </div>
+
+        <div class="menu-item" >
+          Mobile App <span class="carrot">▼</span>
+          <div class="dropdown">
+            <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/#/site/CHH/views/YinzCamData/MobileAppPageMetrics?:iid=20', 1600, 927)">App Page Metrics</div>
+            <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/#/site/CHH/views/Pacing-AppDownloads/PacingGraph?:iid=23', 1600, 927)">Downloads Pacing</div>
+
+          </div>
+        </div>
+
+        <div class="menu-item" >
+          Innovation <span class="carrot">▼</span>
+          <div class="dropdown">
+            <div class="dropdown-option" onclick="loadDashboard('https://hornetsbi.koresoftware.com/t/CHH/views/InternalTechnologyDashboard/HSEVENDORS', 1600, 927)">Internal Tech Dashboard</div>
+            <a href="https://nba.brightidea.com/HornetsInnovation/boards" target="_blank" class="dropdown-option" style="text-decoration: none; color: inherit">Innovation Hub - BrightIdea</a>
+
+          </div>
+        </div>
+
+        
+        <div id="collapse-icon" onclick="toggleSidebar()">
+          <i class="fas fa-chevron-circle-left fa-lg"></i>
+        </div>
+        <!-- Add more menu items with dropdowns as needed -->
+      </div>
+      <div id="content">
+        <tableau-viz id="tableauViz" width="100%" height="100%" hide-tabs toolbar="bottom"></tableau-viz>
+      </div>      
+      <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+      <script>
+        
+        const defaultDashboardURL = 'https://hornetsbi.koresoftware.com/t/CHH/views/HornetsHomeBase/HornetsHomeBase';
+        const tableauViz = document.getElementById('tableauViz');
+        const dashboardLinks = {
+          'F&B': 'https://hornetsbi.koresoftware.com/t/CHH/views/MobileOrderTransactions/SeasonSummary/e4fb4886-41d2-4027-bd69-4f56a5b669a0/676c41c1-08cb-4fda-bcf5-fbe9f476d504',
+          'Ticketing': 'https://hornetsbi.koresoftware.com/t/CHH/views/MobileOrderTransactions/SeasonSummary/e4fb4886-41d2-4027-bd69-4f56a5b669a0/676c41c1-08cb-4fda-bcf5-fbe9f476d504',
+          // Add more dashboard links as needed...
+        };
+    
+        function loadDashboard(src, width, height) {
+          tableauViz.setAttribute('src', src);
+          tableauViz.setAttribute('width', width);
+          tableauViz.setAttribute('height', height);
+        }
+    
+        function loadDefaultDashboard() {
+          loadDashboard(defaultDashboardURL, '1600', '927');
+        }
+    
+        loadDefaultDashboard(); // Load the default dashboard when the page loads
+    
+        const menuItems = document.querySelectorAll('.menu-item');
+    
+        menuItems.forEach(menuItem => {
+          const dropdown = menuItem.querySelector('.dropdown');
+          const dashboardLink = dashboardLinks[menuItem.textContent.trim()]; // Get the corresponding dashboard link
+    
+          menuItem.addEventListener('click', (event) => {
+            event.stopPropagation();
+    
+            // Toggle open/close
+            dropdown.classList.toggle('open');
+    
+            // Close other open dropdowns
+            document.querySelectorAll('.menu-item .dropdown.open').forEach(openDropdown => {
+              if (openDropdown !== dropdown) {
+                openDropdown.classList.remove('open');
+              }
+            });
+    
+            // Load the clicked dashboard if available
+            if (dashboardLink) {
+              loadDashboard(dashboardLink, '1600', '927');
+            }
+          });
+    
+          // Find all dropdown options and add click event listeners
+          const dropdownOptions = menuItem.querySelectorAll('.dropdown-option');
+          dropdownOptions.forEach(option => {
+            option.addEventListener('click', (event) => {
+              event.stopPropagation();
+              // Find the sub-dropdown and toggle open/close
+              const subDropdown = option.querySelector('.dropdown');
+              if (subDropdown) {
+                subDropdown.classList.toggle('open');
+              }
+            });
+          });
+        });
+    
+        function toggleSidebar() {
+          const sidebar = document.getElementById('sidebar');
+          const content = document.getElementById('content');
+          sidebar.classList.toggle('collapsed');
+          content.classList.toggle('collapsed');
+        }
+  </script>
+</body>
+</html>
